@@ -18,7 +18,7 @@ Route::get('/', function () {
 Route::prefix('/')->middleware(['auth', 'verified'])->controller(DashboardController::class)->group(function () {
     Route::get('dashboard', 'index')->name('dashboard');
     Route::get('create', 'create')->name('create');
-    Route::post('update', 'updateUser')->name('updateUser');
+    Route::post('store', 'createUser')->name('createUser');
     Route::delete('delete/{id}','deleteUser')->name('deleteUser');
 });
 

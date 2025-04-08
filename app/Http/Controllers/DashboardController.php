@@ -17,39 +17,19 @@ class DashboardController extends Controller
     }
 
     public function create(){
-        $user = User::where('status', 'draft')->first();
-        if (!$user) {
-            $user = User::create([
-                'name' => '',
-                'email' => '',
-                'password' => Hash::make('password'), // Default password, you can change this as needed
-                'status' => 'draft',
-            ]);
-        }
-        
-        return Inertia::render('CreateUser', $this->formData($user, "create"));
+        return Inertia::render('CreateUser');
     }
 
-    protected function formData( $user, $type)
-    {
-        return [
-            'user' => $user,
-            'type' => $type,
-        ];
-    }
-
-
-    public function updateUser(Request $request, User $user){
+    public function createUser(Request $request){
         $request->validate([
             'name' => 'required|string|min:5',
-            'email' => 'required|string|email|max:255|unique:users,email,' . $user->id,
+            'email' => 'required|string|email|max:255|unique:users',
         ]);
 
         User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make('password'), // Default password, you can change this as needed
-            'status' => 'active',
         ]);
 
         return redirect()->route('dashboard')->with('success', 'User created successfully.');
