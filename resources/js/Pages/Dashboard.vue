@@ -67,7 +67,7 @@
 
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     <div class="grid grid-cols-2">
-                                        <NavLink :href="route('deleteUser', { id: user.id })" method="delete"
+                                        <NavLink :href="route('editUser', { id: user.id })" method="get"
                                             as="button" class="text-white mx-auto px-5 bg-blue-500 rounded-md">
                                             Edit
                                         </NavLink>

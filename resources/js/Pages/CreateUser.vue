@@ -7,12 +7,18 @@ import PrimaryButton from '@/Components/PrimaryButton.vue';
 import InputError from '@/Components/InputError.vue';
 import { User } from '@/types';
 
+const props = defineProps<{
+    userData: User,
+  type: string
+}>();
 
 
 const form = useForm({
-    name: '',
-    email: '',
+    id: props.userData.id ?? '',
+    name:props.userData.name ?? '',
+    email: props.userData.email ?? '',
 });
+
 </script>
 
 <template>
@@ -26,7 +32,7 @@ const form = useForm({
             </h2>
 
             <form
-                @submit.prevent="form.post(route('createUser'))"
+                @submit.prevent="form.post(route('updateUser', { id: form.id }))"
             class="grid grid-cols-2 gap-4 max-w-lg mt-10">
                 <div>
                     <InputLabel for="name" value="Name" />
@@ -35,7 +41,7 @@ const form = useForm({
                 </div>
                 <div>
                     <InputLabel for="email" value="email" />
-                    <TextInput id="email" type="text" class="mt-1 block w-full" v-model="form.email"  autofocus autocomplete="email" />
+                    <TextInput id="email" type="text" class="mt-1 block w-full" v-model="form.email"   autocomplete="email" />
                     <InputError class="mt-2" :message="form.errors.email" />
                 </div>
                 <div class="flex items-center gap-4">
