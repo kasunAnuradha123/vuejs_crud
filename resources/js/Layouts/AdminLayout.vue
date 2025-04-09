@@ -18,29 +18,28 @@
 import { defineComponent } from "vue";
 import { usePage } from "@inertiajs/vue3";
 // import FlashAlerts from "@/Components/elements/Alert/FlashAlert.vue";
-// import AdminFooter from "@/Components/Shared/AdminFooter.vue";
+// import AdminFooter from "@/Components/shared/AdminFooter.vue";
 import AdminHeader from "@/Components/Shared/AdminHeader.vue";
-import AdminSidebar from "@/Components/Shared/AdminSidebar/AdminSideBar.vue";
+// import AdminSidebar from "@/Components/shared/AdminSidebar/AdminSideBar.vue";
 
 export default defineComponent({
     components: {
-        // FlashAlerts,
-        // AdminFooter,
+        FlashAlerts,
+        AdminFooter,
         AdminHeader,
         AdminSidebar,
     },
     setup() {
         const pageProps = usePage().props.value;
-        const user = usePage().props.auth.user;
+        const user = pageProps.auth?.user;
 
+        console.log(pageProps, "pageProps");    
         return {
             pageProps,
             user,
         };
+
     },
 });
 </script>
 
-<style scoped>
-/* Add any scoped styles here if needed */
-</style>

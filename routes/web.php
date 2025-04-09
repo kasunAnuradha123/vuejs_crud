@@ -5,6 +5,7 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\UserController;
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
@@ -15,13 +16,16 @@ Route::get('/', function () {
     ]);
 });
 
-Route::prefix('/')->middleware(['auth', 'verified'])->controller(DashboardController::class)->group(function () {
-    Route::get('dashboard', 'index')->name('dashboard');
-    Route::get('create', 'create')->name('create');
-    Route::get('edit/{id}','editUser')->name('editUser');
-    Route::post('update/{id}', 'updateUser')->name('updateUser');
-    Route::delete('delete/{id}','deleteUser')->name('deleteUser');
+Route::prefix('/users')->middleware(['auth', 'verified'])->controller(UserController::class)->group(function () {
+    Route::get('/', 'index')->name('users.all');
+    Route::get('/create', 'create')->name('user.create');
+    Route::get('/edit/{id}','editUser')->name('user.edit');
+    Route::post('/update/{id}', 'updateUser')->name('user.update');
+    Route::delete('/delete/{id}','deleteUser')->name('user.delete');
 });
+Route::get('/dashboard', function () {
+    return Inertia::render('Dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

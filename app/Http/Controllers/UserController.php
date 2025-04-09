@@ -7,12 +7,12 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Inertia\Inertia;
 
-class DashboardController extends Controller
+class UserController extends Controller
 {
     public function index()
     {
 
-        return Inertia::render('Dashboard', [
+        return Inertia::render('User/Index', [
             'users' => User::where('status', 'active')->get(),
         ]);
     }
@@ -29,7 +29,7 @@ class DashboardController extends Controller
             ]);
         }
 
-        return Inertia::render('CreateUser', $this->formData($user, "create"));
+        return Inertia::render('User/Edit', $this->formData($user, "create"));
     }
 
     protected function formData($user, $type)
@@ -42,7 +42,7 @@ class DashboardController extends Controller
 
     public function editUser(int $id){
         $user = User::find($id);
-        return Inertia::render('CreateUser', $this->formData($user, "edit"));
+        return Inertia::render('User/Edit', $this->formData($user, "edit"));
     }
 
     public function updateUser(Request $request, int $id)
@@ -59,7 +59,7 @@ class DashboardController extends Controller
             'status' => 'active',
         ]);
 
-        return redirect()->route('dashboard')->with('success', 'User created successfully.');
+        return redirect()->route('users.all')->with('success', 'User created successfully.');
     }
 
     public function deleteUser($id)
@@ -67,9 +67,9 @@ class DashboardController extends Controller
         $user = User::find($id);
         if ($user) {
             $user->delete();
-            return redirect()->route('dashboard')->with('success', 'User deleted successfully.');
+            return redirect()->route('users.all')->with('success', 'User deleted successfully.');
         } else {
-            return redirect()->route('dashboard')->with('error', 'User not found.');
+            return redirect()->route('users.all')->with('error', 'User not found.');
         }
     }
 }
