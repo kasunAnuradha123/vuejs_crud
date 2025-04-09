@@ -48,7 +48,7 @@ class DashboardController extends Controller
     public function updateUser(Request $request, int $id)
     {
         $request->validate([
-            'name' => 'required|string|min:2',
+            'name' => 'required|string|min:5|max:200',
             'email' => 'required|string|email|max:255',
         ]);
         $user = User::findOrFail($id);
