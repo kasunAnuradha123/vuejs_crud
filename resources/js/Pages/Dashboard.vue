@@ -6,9 +6,9 @@
     import { Head } from '@inertiajs/vue3';
 
 
-    defineProps<{
-        users?: User[];
-    }>();
+    defineProps({
+        usersCount : Number,
+    })
 
 </script>
 
@@ -21,9 +21,16 @@
             <h2 class="text-xl font-semibold leading-tight text-gray-800">
                 Dashboard
             </h2>
-        </template>
-        <div>
+        </template>   
+        <div class="p-5">
+           <span>
             welcome
+           </span> 
+           <div>Users Count:
+            <span class="text-2xl font-bold text-blue-500">
+                {{ usersCount }}
+            </span>
+           </div>
         </div>
     </AuthenticatedLayout>
 </template>
