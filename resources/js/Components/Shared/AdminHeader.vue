@@ -6,12 +6,18 @@ import { usePage, Link } from "@inertiajs/vue3";
 // import Breadcrumbs from "../elements/header/BreadCumbs.vue";
 import { navigationLinks } from "@/lib/SideNavLinks";
 import NavItem from "./AdminSidebar/partials/NavItem.vue";
+import { User } from "@/types";
+
+defineProps<{
+  user:User
+}>();
 
 const sidebarOpen = ref(false);
 
 function classNames(...classes: any) {
     return classes.filter(Boolean).join(" ");
 }
+
 
 const { props } = usePage();
 const user = props.user;
@@ -80,8 +86,7 @@ const user = props.user;
                                     :icon="item.icon"
                                     :link="item.link"
                                     :border="item.border"
-                                    :children="item.children"
-                                />
+                                                                    />
                             </div>
                             <div class="ml-8 border-solid border-2 border-l-0 border-t-0 border-b-0 border-borderColor">
                                 <div class="flex justify-center py-6">

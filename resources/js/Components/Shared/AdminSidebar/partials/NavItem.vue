@@ -56,7 +56,7 @@ export default {
         },
         children: {
             type: Array,
-            required: true,
+            required: false,
         },
         svg: {
             type: [String, Object],

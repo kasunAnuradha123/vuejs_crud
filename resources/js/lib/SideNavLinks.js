@@ -7,6 +7,7 @@ export const navigationLinks = [
         startWith: "/dashboard",
         route: "dashboard",
         icon: "HomeIcon",
+        // children:[],
     },
     { name: "Administrative", link: false, border: false },
     {
@@ -16,6 +17,8 @@ export const navigationLinks = [
         startWith: "/users",
         route: "users.all",
         icon: "UsersIcon",
+        // children:[],
     },
 
 ];
+  

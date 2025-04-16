@@ -17,7 +17,7 @@
 <script>
 import { defineComponent } from "vue";
 import { usePage } from "@inertiajs/vue3";
-// import FlashAlerts from "@/Components/elements/Alert/FlashAlert.vue";
+// import FlashAlerts from "@/Components/elements/Alert/FlashAlert.  vue";
 // import AdminFooter from "@/Components/Shared/AdminFooter.vue";
 import AdminHeader from "@/Components/Shared/AdminHeader.vue";
 import AdminSidebar from "@/Components/Shared/AdminSidebar/AdminSideBar.vue";
@@ -25,10 +25,10 @@ import AdminSidebar from "@/Components/Shared/AdminSidebar/AdminSideBar.vue";
 export default defineComponent({
     components: {
         // FlashAlerts,
-        // AdminFooter,
+        // AdminFooter, 
         AdminHeader,
         AdminSidebar,
-    },
+    },  
     setup() {
         const pageProps = usePage().props.value;
         const user = usePage().props.auth.user;

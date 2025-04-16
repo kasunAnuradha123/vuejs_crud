@@ -22,8 +22,8 @@
             </h2>
         </template>
 
-        <div class="py-12">
-            <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
+        <div class="py-12 shadow-sm bg-blue-100 rounded-sm">
+            <div class="mx-auto max-w-7xl sm:px-6 lg:px-8 shadow  " >
                 <div class="overflow-hidden bg-white shadow-sm sm:rounded-lg">
                     <dev class=" grid grid-cols-2">
                         <div class="px-6 py-4">
