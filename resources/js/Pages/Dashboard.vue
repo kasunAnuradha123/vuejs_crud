@@ -16,17 +16,25 @@ import { defineProps } from 'vue';
 // Register Chart.js components
 ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale);
 
-defineProps<{
+// defineProps<{
+//   usersCount: number;
+//   userChartData:any;
+// }>();
+
+const props = defineProps<{
   usersCount: number;
+  userChartData:any;
 }>();
 
+console.log('userChartData',);
+
 const chartData = {
-  labels: ['Apple', 'Orange', 'Banana', 'Mango', 'Grape','papaya'],
+  labels: props.userChartData.name,
   datasets: [
     {
-      label: 'Fruits',
+      label: 'Users',
       backgroundColor: '#3B82F6',
-      data: [61, 55, 61, 30, 28,20]
+      data: props.userChartData.mark
     }
   ]
 };
@@ -50,7 +58,7 @@ const chartOptions = {
 
       <div>
         Users Count:
-        <span class="text-2xl font-bold text-blue-500">{{ usersCount }}</span>
+        <span class="text-2xl font-bold text-blue-500">{{ props.usersCount }}</span>
       </div>
 
       <!-- Chart -->
