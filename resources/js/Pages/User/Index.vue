@@ -47,6 +47,10 @@
                                     Email
                                 </th>
                                 <th scope="col"
+                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                Mark
+                            </th>
+                                <th scope="col"
                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                     Created At
                                 </th>
@@ -61,7 +65,10 @@
                                     {{ user.email }}
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap">
-                                    {{ user.created_at }}
+                                    {{ user.mark }}
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    {{ user.created_at_human }}
                                 </td>
 
                                 <td class="px-6 py-4 whitespace-nowrap">

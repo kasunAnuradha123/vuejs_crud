@@ -57,6 +57,7 @@ class UserController extends Controller
             'email' => $request->input('email'),
             'password' => Hash::make('password'), 
             'status' => 'active',
+            'mark' => $request->input('mark'),
         ]);
 
         return redirect()->route('users.all')->with('success', 'User created successfully.');

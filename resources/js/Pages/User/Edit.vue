@@ -16,6 +16,7 @@ const form = useForm({
     id: props.userData.id ?? '',
     name: props.userData.name ?? '',
     email: props.userData.email ?? '',
+    mark: String(props.userData.mark ?? 0),
 });
 </script>
 
@@ -42,7 +43,13 @@ const form = useForm({
                 <InputLabel for="email" value="Email" />
                 <TextInput id="email" type="text" class="mt-1 block w-full" v-model="form.email" autocomplete="email" />
                 <InputError class="mt-2" :message="form.errors.email" />
+            </div>  
+            <div>
+                <InputLabel for="mark" value="Mark" />
+                <TextInput id="mark" type="number" class="mt-1 block w-full" v-model="form.mark" autocomplete="mark" />
+                <InputError class="mt-2" :message="form.errors.mark" />
             </div>
+            <div></div>
             <div class="flex items-center gap-4">
                 <PrimaryButton :disabled="form.processing">Save</PrimaryButton>
 
