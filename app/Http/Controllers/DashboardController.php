@@ -12,7 +12,7 @@ class DashboardController extends Controller
     {
        return Inertia::render('Dashboard', [
             'usersCount' => User::where('status', 'active')->count(),
-            'userChartData' => $this->userChartData(),
+            // 'userChartData' => $this->userChartData(),
         ]);
     }
 

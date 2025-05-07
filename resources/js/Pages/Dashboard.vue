@@ -12,6 +12,8 @@ import {
 } from 'chart.js';
 import { Bar } from 'vue-chartjs';
 import { defineProps } from 'vue';
+import { onMounted, ref } from 'vue';
+import axios from 'axios';
 
 // Register Chart.js components
 ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale);
@@ -26,23 +28,47 @@ const props = defineProps<{
   userChartData:any;
 }>();
 
-console.log('userChartData',);
 
-const chartData = {
-  labels: props.userChartData.name,
+const chartData = ref({
+  labels: props.userChartData?.name,
   datasets: [
     {
       label: 'Users',
       backgroundColor: '#3B82F6',
-      data: props.userChartData.mark
+      data: props.userChartData?.mark
     }
   ]
-};
+});
 
+// Chart options (static)
 const chartOptions = {
   responsive: true,
   maintainAspectRatio: false
 };
+
+// Function to fetch data
+const fetchChartData = async () => {
+  try {
+    const response = await axios.get('/dashboard/chart-data');
+    chartData.value = {
+      labels: response.data.name,
+      datasets: [
+        {
+          label: 'Users',
+          backgroundColor: '#3B82F6',
+          data: response.data.mark
+        }
+      ]
+    };
+  } catch (error) {
+    console.error('Error fetching chart data:', error);
+  }
+};
+
+// Poll every 10 seconds
+onMounted(() => {
+  // setInterval(fetchChartData, 10000); // 10 seconds  
+});
 </script>
 
 <template>

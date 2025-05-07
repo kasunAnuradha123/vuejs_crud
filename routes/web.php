@@ -7,14 +7,11 @@ use Inertia\Inertia;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\UserController;
 
-Route::get('/', function () {
-    return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
-});
+
+Route::get('/',function () {
+        return redirect()->route("login");
+    }
+);
 
 // Route::prefix('/users')->middleware(['auth', 'verified'])->controller(UserController::class)->group(function () {
 //     Route::get('/', 'index')->name('users.all');
@@ -30,6 +27,7 @@ Route::get('/', function () {
 
 Route::prefix('/')->middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/dashboard/chart-data', [DashboardController::class, 'userChartData'])->name('dashboard.chart.data');
     Route::get('/users', [UserController::class, 'index'])->name('users.all');
     Route::get('/users/create', [UserController::class, 'create'])->name('user.create');
     Route::get('/users/edit/{id}', [UserController::class, 'editUser'])->name('user.edit');
