@@ -6,7 +6,7 @@ import { Link } from "@inertiajs/vue3";
 import { navigationLinks } from "@/lib/SideNavLinks";
 import NavItem from "./AdminSidebar/partials/NavItem.vue";
 import { User } from "@/types";
-
+import { DialogPanel } from '@headlessui/vue'
 // Correct props definition
 defineProps<{
   user: User;

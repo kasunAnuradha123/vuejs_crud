@@ -25,17 +25,17 @@ ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale)
 
 const props = defineProps<{
   usersCount: number;
-  userChartData:any;
+  // userChartData:any;
 }>();
 
 
 const chartData = ref({
-  labels: props.userChartData?.name,
+  // labels: props.userChartData?.name,
   datasets: [
     {
       label: 'Users',
       backgroundColor: '#3B82F6',
-      data: props.userChartData?.mark
+      // data: props.userChartData?.mark
     }
   ]
 });
@@ -51,12 +51,12 @@ const fetchChartData = async () => {
   try {
     const response = await axios.get('/dashboard/chart-data');
     chartData.value = {
-      labels: response.data.name,
+      // labels: response.data.name,
       datasets: [
         {
           label: 'Users',
           backgroundColor: '#3B82F6',
-          data: response.data.mark
+          // data: response.data.mark
         }
       ]
     };
@@ -89,7 +89,7 @@ onMounted(() => {
 
       <!-- Chart -->
       <div class="h-96 bg-white p-4 rounded shadow">
-        <Bar :data="chartData" :options="chartOptions" />
+        <!-- <Bar :data="chartData" :options="chartOptions" /> -->
       </div>
     </div>
   </AuthenticatedLayout>

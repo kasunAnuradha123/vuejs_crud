@@ -1,7 +1,7 @@
 <?php
 
+use App\Http\Controllers\Admin\AuthenticationRequestController;
 use App\Http\Controllers\ProfileController;
-use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\DashboardController;
@@ -20,19 +20,27 @@ Route::get('/',function () {
 //     Route::post('/update/{id}', 'updateUser')->name('user.update');
 //     Route::delete('/delete/{id}','deleteUser')->name('user.delete');
 // });
-// Route::get('/dashboard', function () {
-//     return Inertia::render('Dashboard');
-// })->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/approval', function () {
+    return Inertia::render('Approval');
+})->middleware(['auth', 'verified'])->name('approval');
 
 
 Route::prefix('/')->middleware(['auth', 'verified'])->group(function () {
+
+    
+
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/dashboard/chart-data', [DashboardController::class, 'userChartData'])->name('dashboard.chart.data');
-    Route::get('/users', [UserController::class, 'index'])->name('users.all');
+    Route::get('/users', [UserController::class, 'index'])->middleware(['cookie.approvalConfirm'])->name('users.all');
     Route::get('/users/create', [UserController::class, 'create'])->name('user.create');
     Route::get('/users/edit/{id}', [UserController::class, 'editUser'])->name('user.edit');
     Route::post('/users/update/{id}', [UserController::class, 'updateUser'])->name('user.update');
     Route::delete('/users/delete/{id}', [UserController::class, 'deleteUser'])->name('user.delete');
+
+    Route::prefix('/auth_request')->controller(AuthenticationRequestController::class)->group(function(){
+        Route::get('/','index')->name('auth_request.index');
+        Route::post('/update/{id}', 'update')->name('auth_request.update');
+    });
 });
 
 Route::middleware('auth')->group(function () {

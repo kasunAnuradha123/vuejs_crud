@@ -10,7 +10,7 @@ export default {
         },
         className: {
             type: String,
-            required: true,
+            required: false,
         },
     },
     computed: {

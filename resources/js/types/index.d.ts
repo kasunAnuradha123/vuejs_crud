@@ -9,6 +9,18 @@ export interface User {
     mark:number;
 }
 
+export interface AuthRequest {
+    id: number;
+    user_id: string;
+    approval: number;
+    approval_secret: string;
+    time: string;
+    remark: string;
+    browser: string;
+    is_confirm: number;
+    user:User;
+}
+
 export type PageProps<
     T extends Record<string, unknown> = Record<string, unknown>,
 > = T & {

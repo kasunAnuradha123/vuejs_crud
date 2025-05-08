@@ -19,6 +19,15 @@ export const navigationLinks = [
         icon: "UsersIcon",
         // children:[],
     },
+    {
+        name: "Device Approval List",
+        link: true,
+        border: false,
+        startWith: "/auth_request",
+        route: "auth_request.index",
+        icon: "DeviceTabletIcon",
+        // children:[],
+    },
 
 ];
   
